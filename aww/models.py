@@ -6,7 +6,7 @@ class Project(models.Model):
     project_image = models.ImageField(upload_to='picture/', null=True, blank=True)
     description = models.TextField()
     project_url=models.URLField(max_length=250)
-    
+
 
     def average_design(self):
         design_ratings = list(map(lambda x: x.design_rating, self.reviews.all()))
@@ -98,6 +98,9 @@ class Location(models.Model):
 
     def __str__(self):
         return self.name
+class NewsLetterRecipients(models.Model):
+    name = models.CharField(max_length = 30)
+    email = models.EmailField()       
 
 
 # class Image(models.Model):

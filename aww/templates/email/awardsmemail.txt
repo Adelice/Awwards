@@ -1,4 +1,4 @@
 Hello {{name}}
 
 Welcome to the  Awards Website!
-    You will be able to rate and review projects.
+   You will be able notified of new projects posted.
