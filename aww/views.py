@@ -8,7 +8,7 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .email import send_welcome_email
-from .models import Project, NewsLetterRecipients
+from .models import Project, NewsLetterRecipients,Image
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework import generics
@@ -67,4 +67,30 @@ class ProfileList(APIView):
             serializers.save()
             return Response(serializers.data, status= status.HTTP_201_CREATED)
 
-        return Response(serializers.errors, status = status.HTTP_400_BAD_REQUEST)    
+        return Response(serializers.errors, status = status.HTTP_400_BAD_REQUEST)   
+@login_required(login_url='/accounts/login/')
+def edit_profile(request):
+    current_user = request.user
+
+    if request.method == 'POST':
+        form = UpdatebioForm(request.POST, request.FILES, instance=current_user.profile)
+        print(form.is_valid())
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+            image.save()
+        return redirect('homePage')
+
+    else:
+        form = UpdatebioForm()
+    return render(request, 'registration/edit_profile.html', {"form": form})
+
+@login_required(login_url='/accounts/login/')
+def individual_profile_page(request, username=None):
+    if not username:
+        username = request.user.username
+    # images by user id
+    images = Image.objects.filter(user_id=username)
+
+    return render (request, 'registration/user_image_list.html', {'images':images, 'username': username})
+

@@ -103,53 +103,84 @@ class NewsLetterRecipients(models.Model):
     email = models.EmailField()       
 
 
-# class Image(models.Model):
+class Image(models.Model):
    
-#     name = models.CharField(max_length=40)
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, related_name="images")
-#     description=models.TextField()
-#     location=models.ForeignKey(Location, null=True)
+    name = models.CharField(max_length=40)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, related_name="images")
+    description=models.TextField()
+    location=models.ForeignKey(Location, null=True)
    
-#     # likes = models.IntegerField(default=0)
-#     comments= models.TextField(blank=True)
+    # likes = models.IntegerField(default=0)
+    comments= models.TextField(blank=True)
 
-#     def __str__(self):
-#         return self.name
+    def __str__(self):
+        return self.name
 
-#     def save_image(self):
-#         self.save()
+    def save_image(self):
+        self.save()
 
-#     @classmethod
-#     def delete_image_by_id(cls, id):
-#         pictures = cls.objects.filter(pk=id)
-#         pictures.delete()
+    @classmethod
+    def delete_image_by_id(cls, id):
+        pictures = cls.objects.filter(pk=id)
+        pictures.delete()
 
-#     @classmethod
-#     def get_image_by_id(cls, id):
-#         pictures = cls.objects.get(pk=id)
-#         return pictures
+    @classmethod
+    def get_image_by_id(cls, id):
+        pictures = cls.objects.get(pk=id)
+        return pictures
 
-#     # @classmethod
-#     # def filter_by_tag(cls, tags):
-#     #     pictures = cls.objects.filter(tags=tags)
-#     #     return pictures
+    # @classmethod
+    # def filter_by_tag(cls, tags):
+    #     pictures = cls.objects.filter(tags=tags)
+    #     return pictures
 
-#     @classmethod
-#     def filter_by_location(cls, location):
-#         pictures = cls.objects.filter(location=location)
-#         return pictures
+    @classmethod
+    def filter_by_location(cls, location):
+        pictures = cls.objects.filter(location=location)
+        return pictures
 
-#     @classmethod
-#     def search_image(cls, search_term):
-#         pictures = cls.objects.filter(name__icontains=search_term)
-#         return pictures
+    @classmethod
+    def search_image(cls, search_term):
+        pictures = cls.objects.filter(name__icontains=search_term)
+        return pictures
 
-#     @classmethod
-#     def update_image(cls, id):
-#         pictures=cls.objects.filter(id=id).update(id=id)
-#         return pictures
+    @classmethod
+    def update_image(cls, id):
+        pictures=cls.objects.filter(id=id).update(id=id)
+        return pictures
 
-#     @classmethod
-#     def update_description(cls, id):
-#         pictures = cls.objects.filter(id=id).update(id=id)
-#         return pictures  
+    @classmethod
+    def update_description(cls, id):
+        pictures = cls.objects.filter(id=id).update(id=id)
+        return pictures  
+class Review(models.Model):
+    RATING_CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+        (6, '6'),
+        (7, '7'),
+        (8, '8'),
+        (9, '9'),
+        (10, '10'),
+
+    )
+    project = models.ForeignKey(Project, null=True, blank=True, on_delete=models.CASCADE, related_name="reviews")
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE, related_name='reviews')
+    image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name="reviews", null=True, blank=True)
+    comment = models.TextField()
+    design_rating = models.IntegerField(choices=RATING_CHOICES, default=0)
+    usability_rating = models.IntegerField(choices=RATING_CHOICES, default=0)
+    content_rating = models.IntegerField(choices=RATING_CHOICES, default=0)
+
+    def save_comment(self):
+        self.save()
+
+    def get_comment(self, id):
+        comments = Review.objects.filter(image_id =id)
+        return comments
+
+    def __str__(self):
+        return self.comment
