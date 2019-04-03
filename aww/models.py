@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+import numpy as np
 class Project(models.Model):
-    image=models.ImageField(upload_to='picture/', )
+    
     title = models.TextField(max_length=200, null=True, blank=True, default="title")
     project_image = models.ImageField(upload_to='picture/', null=True, blank=True)
     description = models.TextField()
