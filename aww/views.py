@@ -11,6 +11,11 @@ from .email import send_welcome_email
 from .models import Project, NewsLetterRecipients
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework import generics
+from rest_framework.response import Response
+from .permissions import IsAdminOrReadOnly
+from .serializers import ProfileSerializer
+
 # Create your views here.
 
 @login_required(login_url='/accounts/login/')

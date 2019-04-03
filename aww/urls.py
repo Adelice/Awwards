@@ -9,6 +9,7 @@ urlpatterns = [
     
     url(r'^$', views.home_projects, name='homePage'),
     url(r'^ajax/newsletter/$', views.newsletter, name='newsletter'),
+    url(r'^api/profile/$', views.ProfileList.as_view()),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)    
