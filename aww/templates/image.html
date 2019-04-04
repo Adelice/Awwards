@@ -1,17 +1,19 @@
-{% extends 'base.html' %} {% load static %} {% load bootstrap4%} {% block content %}
+{% extends 'base.html' %} {% load static %} {% load bootstrap4%} 
+{% block content %}
 
+<link href="https://fonts.googleapis.com/css?family=Germania+One" rel="stylesheet"> 
 
-<div class="container">
+<div class="container" style="font-family: 'Germania One', cursive;">
 
-  <div class="jumbotron text-center" style="background-color:white;">
+  <div class="jumbotron text-center" style="background-color:brown;">
 
-    <h1 class="h1" style="font-family: 'Dosis', cursive; color:blue;font-size:70px;">Awards</h1>
+    <h1 class="h1" style=" color:black;text-transform: uppercase">{{project.title}}'s project</h1>
 
 
   </div>
 </div>
 
-<div class="container">
+<div class="container" style="font-family: 'Germania One', cursive;">
 <div class="card mb-3" style="width:40rem;;">
   <img class="card-img-top" src="{{project.project_image.url}}" alt="Card image cap" class="img-fluid" size="100px200">
   <div class="card-body">
@@ -28,7 +30,7 @@
 
   <div class="card border-secondary">
      <div class="card-header">
-     <h5 style=""> Comments</h5>
+    
        </div>
 
 
@@ -37,24 +39,24 @@
         {{ review.project.title }}
         </h4>
     {% for review in latest_review_list %}
-    <div>
+    <!-- <div>
 
         <p style="color:black;">Comment by {{ review.user }}: {{ review.comment }}</p>
-    </div>
+    </div> -->
 
 
     {% endfor %}
 
-          <h1 style="color:black;">AVERAGE OF REVIEWS</h1>
+          <h1 style="color:black;">RATE THE PROJECT</h1>
 
 
 <h5 >{{ project.reviews.count }} reviews ({{ project.average_design | floatformat }} average rating of design)</h5>
 <h5 >{{ project.reviews.count }} reviews ({{ project.average_content | floatformat }} average rating of content)</h5>
 <h5 >{{ project.reviews.count }} reviews ({{ project.average_usability | floatformat }} average rating of usability)</h5>
 
-<h3 style="font-family: 'Dosis', sans-serif;">Add your comment</h3>
+
   <hr>
-  <form action=""  method="post" style="font-family: 'Dosis',sans-serif;">
+  <form action=""  method="post" style="font-family: 'Germania One', cursive;">
     {%csrf_token%} {% bootstrap_form form %}
       <input type="submit" class="btn btn-primary" value="Post">
   </form>
@@ -77,11 +79,14 @@
         <ul id="footer1">
          
 
-          <li style="font-size:10px;"> <strong>© 2018 MELISSA MALALA</strong></li>
+          <li style="font-size:10px;"> <strong>© 2019 Umutoniwase Nancy
+
+          </strong></li>
         </ul>
 
       </div>
 
     </div>
   </div>
+</div>
 {% endblock %}

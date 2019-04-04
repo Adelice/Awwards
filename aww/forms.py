@@ -20,7 +20,8 @@ class NewProjectForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = [ 'usability_rating', 'design_rating', 'content_rating' , 'comment']
-        widgets = {
-            'comment': Textarea(attrs={'cols': 40, 'rows': 15}),
-        }
+        fields = [ 'usability_rating', 'design_rating', 'content_rating']
+class UpdatebioForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['user',]        

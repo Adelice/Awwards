@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate
 from django.http  import HttpResponse, Http404, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
-from .forms import SignupForm,NewsLetterForm,NewProjectForm,ReviewForm
+from .forms import SignupForm,NewsLetterForm,NewProjectForm,ReviewForm,UpdatebioForm
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.contrib.auth.models import User
