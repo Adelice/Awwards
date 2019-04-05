@@ -21,6 +21,8 @@ python3.6 manage.py runserver
 * Chrome Browser
 * Have Internet connection
 * postman
+#### Deployment
+Heroku
 ### Support and Contact details
 contact me on nancytoniw@gmail.com for any comments,reviews or advices.
 ### License
