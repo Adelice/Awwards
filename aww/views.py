@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate
 from django.http  import HttpResponse, Http404, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
-from .forms import SignupForm,NewsLetterForm,NewProjectForm,ReviewForm,UpdatebioForm
+from .forms import SignupForm,NewsLetterForm,NewProjectForm,ReviewForm,UpdatebioForm,NewImageForm
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -43,6 +43,21 @@ def home_projects (request):
             HttpResponseRedirect('home_projects')
 
     return render(request, 'index.html', {'projects':projects, 'letterForm':form})
+@login_required(login_url='/accounts/login/')
+def new_image(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+            image.save()
+        return redirect('homePage')
+
+    else:
+        form = NewImageForm()
+    return render(request, 'registration/new_image.html', {"form": form})
+
 def newsletter(request):
     name = request.POST.get('your_name')
     email= request.POST.get('email')
@@ -69,7 +84,7 @@ class ProfileList(APIView):
 
         return Response(serializers.errors, status = status.HTTP_400_BAD_REQUEST)   
 @login_required(login_url='/accounts/login/')
-def edit_profile(request):
+def edit_profile(request,id):
     current_user = request.user
 
     if request.method == 'POST':

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 import numpy as np
 class Project(models.Model):
     
@@ -61,11 +62,11 @@ class Profile(models.Model):
     project=models.ForeignKey(Project, null=True)
     contact=models.IntegerField(default=0)
 
-    # def create_user_profile(sender, instance, created, **kwargs):
-    #     if created:
-    #         Profile.objects.create(user=instance)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
 
-    # post_save.connect(create_user_profile, sender=User)
+    post_save.connect(create_user_profile, sender=User)
 
 
     def save_profile(self):

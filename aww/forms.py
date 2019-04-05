@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import  Profile, Project,Review
+from .models import  Profile, Project,Review,Image
 from django.forms import ModelForm, Textarea, IntegerField
 
 class SignupForm(UserCreationForm):
@@ -24,4 +24,8 @@ class ReviewForm(forms.ModelForm):
 class UpdatebioForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['user',]        
+        exclude = ['user',]
+class NewImageForm(forms.ModelForm):
+    class Meta:
+        model = Image
+        exclude = ['user',]               
