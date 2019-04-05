@@ -14,3 +14,10 @@ CREATE DATABASE awwards;
 #### Run the app
 python3.6 manage.py runserver
 ### Technologies used
+* Git
+* Python3.6
+* Django: 1.11 or greater version
+* Virtualenv
+* Chrome Browser
+* Have Internet connection
+* postman
