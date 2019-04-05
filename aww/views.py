@@ -143,11 +143,11 @@ def project(request, id):
             design_rating = form.cleaned_data['design_rating']
             content_rating = form.cleaned_data['content_rating']
             usability_rating = form.cleaned_data['usability_rating']
-            comment = form.cleaned_data['comment']
+            
             review = Review()
             review.project = project
             review.user = current_user
-            review.comment = comment
+            
             review.design_rating = design_rating
             review.content_rating = content_rating
             review.usability_rating = usability_rating
