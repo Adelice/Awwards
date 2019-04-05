@@ -16,7 +16,8 @@ urlpatterns = [
     url(r'^new/project$', views.new_project, name='new_project'),  
     url(r'^image(\d+)', views.project, name='project') ,
     url(r'^new/image$', views.new_image, name='new_image'), 
-   
+    url(r'^api/project/$', views.ProjectList.as_view()),
+
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)    
