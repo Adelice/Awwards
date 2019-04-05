@@ -10,3 +10,7 @@ A well-designed landing page that allows a user to post a project he/she has cre
 Run the following command on the terminal: git clone https://github.com/Adelice/Awwards
 ### Create the database
 psql
+CREATE DATABASE awwards;
+#### Run the app
+python3.6 manage.py runserver
+### Technologies used
