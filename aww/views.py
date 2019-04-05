@@ -14,7 +14,7 @@ from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework.response import Response
 from .permissions import IsAdminOrReadOnly
-from .serializers import ProfileSerializer
+from .serializers import ProfileSerializer,ProjectSerializer
 
 # Create your views here.
 
