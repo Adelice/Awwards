@@ -8,7 +8,7 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .email import send_welcome_email
-from .models import Project, NewsLetterRecipients,Image,Review
+from .models import Project, NewsLetterRecipients,Image,Review,Profile
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework import generics

@@ -14,7 +14,8 @@ urlpatterns = [
     url(r'^profile/(?P<username>[0-9]+)$',
         views.individual_profile_page, name='individual_profile_page'),
     url(r'^new/project$', views.new_project, name='new_project'),  
-    url(r'^image(\d+)', views.project, name='project')  
+    url(r'^image(\d+)', views.project, name='project') , 
+   
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)    
