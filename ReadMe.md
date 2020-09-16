@@ -31,4 +31,4 @@ Heroku
 ### Support and Contact details
 contact me on nancytoniw@gmail.com for any comments,reviews or advices.
 ### License
-Copyright (c) Nancy Adelice Unmutoniwase
+MIT Copyright (c) Nancy Adelice Unmutoniwase
